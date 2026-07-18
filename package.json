@@ -1,0 +1,12 @@
+{
+  "name": "park-youngin-tax-office",
+  "version": "1.0.0",
+  "private": true,
+  "description": "박영인 세무회계사무소 브랜드 웹사이트",
+  "scripts": {
+    "serve": "python -m http.server 4173"
+  },
+  "dependencies": {
+    "@phosphor-icons/web": "^2.1.2"
+  }
+}

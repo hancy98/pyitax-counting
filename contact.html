@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="개인사업자, 법인사업자, 신규 사업자를 위한 세무 상담 문의를 접수합니다."
+    />
+    <title>상담 문의 | 박영인 세무회계사무소</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/site.js" defer></script>
+  </head>
+  <body data-page="contact">
+    <a class="skip-link" href="#main-content">본문 바로가기</a>
+    <div id="site-header"></div>
+    <main id="main-content">
+      <section class="sub-hero">
+        <img
+          src="assets/tax-office/consultation-process.png"
+          alt="자연광이 들어오는 밝고 정돈된 상담 공간"
+          width="1536"
+          height="1024"
+        />
+        <div class="sub-hero-content">
+          <h1 class="page-title">상담 문의</h1>
+          <div class="title-rule"></div>
+          <p>
+            복잡한 세무 고민을 편하게 남겨주시면 확인 후 안내해 드리겠습니다.
+          </p>
+        </div>
+      </section>
+      <section class="section">
+        <div class="shell contact-layout">
+          <aside class="contact-guide">
+            <p class="kicker">상담 안내</p>
+            <h2>현재 필요한 세무 상담을 알려주세요</h2>
+            <div class="title-rule"></div>
+            <p>
+              사업자 유형과 문의 내용을 확인한 뒤 적합한 상담 방법과 필요한
+              준비사항을 안내해 드립니다.
+            </p>
+            <div class="guide-list">
+              <div class="guide-item">
+                <i class="ph-light ph-buildings" aria-hidden="true"></i
+                ><span>개인사업자 및 법인사업자 상담</span>
+              </div>
+              <div class="guide-item">
+                <i class="ph-light ph-plant" aria-hidden="true"></i
+                ><span>신규 사업자 상담</span>
+              </div>
+              <div class="guide-item">
+                <i class="ph-light ph-book-open-text" aria-hidden="true"></i
+                ><span>기장 및 신고 업무</span>
+              </div>
+              <div class="guide-item">
+                <i class="ph-light ph-chart-line-up" aria-hidden="true"></i
+                ><span>세무조정 및 세무 컨설팅</span>
+              </div>
+              <div class="guide-item">
+                <i class="ph-light ph-scales" aria-hidden="true"></i
+                ><span>양도·상속·증여 관련 상담</span>
+              </div>
+            </div>
+          </aside>
+          <form class="contact-form" id="consultation-form" novalidate>
+            <h2>상담 신청</h2>
+            <div class="form-grid">
+              <div class="field field-full">
+                <label for="name"
+                  >이름 또는 업체명 <span class="required">*</span></label
+                ><input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="이름 또는 업체명을 입력해 주세요"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="phone">연락처 <span class="required">*</span></label
+                ><input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="연락처를 입력해 주세요"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="email">이메일</label
+                ><input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="이메일을 입력해 주세요"
+                />
+              </div>
+              <div class="field">
+                <label for="business-type"
+                  >사업자 유형 <span class="required">*</span></label
+                ><select id="business-type" required>
+                  <option value="">선택해 주세요</option>
+                  <option>개인사업자</option>
+                  <option>법인사업자</option>
+                  <option>예비사업자</option>
+                  <option>기타</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="consulting-area"
+                  >상담 분야 <span class="required">*</span></label
+                ><select id="consulting-area" required>
+                  <option value="">선택해 주세요</option>
+                  <option>기장대행</option>
+                  <option>세무조정</option>
+                  <option>종합소득세</option>
+                  <option>부가가치세</option>
+                  <option>법인세</option>
+                  <option>신규 사업자 상담</option>
+                  <option>양도·상속·증여</option>
+                  <option>세무조사 및 소명</option>
+                  <option>기타</option>
+                </select>
+              </div>
+              <div class="field field-full">
+                <label for="message"
+                  >문의 내용 <span class="required">*</span></label
+                ><textarea
+                  id="message"
+                  placeholder="현재 상황과 궁금한 내용을 작성해 주세요"
+                  required
+                ></textarea>
+              </div>
+              <fieldset class="choice-group field-full">
+                <legend>상담 희망 방식 <span class="required">*</span></legend>
+                <div class="choice-row">
+                  <div class="choice">
+                    <input
+                      id="contact-phone"
+                      name="contact-method"
+                      type="radio"
+                      required
+                    /><label for="contact-phone">전화 상담</label>
+                  </div>
+                  <div class="choice">
+                    <input
+                      id="contact-online"
+                      name="contact-method"
+                      type="radio"
+                    /><label for="contact-online">온라인 상담</label>
+                  </div>
+                  <div class="choice">
+                    <input
+                      id="contact-visit"
+                      name="contact-method"
+                      type="radio"
+                    /><label for="contact-visit">방문 상담</label>
+                  </div>
+                </div>
+              </fieldset>
+              <label class="consent field-full"
+                ><input type="checkbox" required /><span
+                  >상담을 위한 개인정보 수집 및 이용에 동의합니다.
+                  <span class="required">*</span></span
+                ></label
+              >
+              <div class="field-full">
+                <button class="button button-primary" type="submit">
+                  상담 신청
+                  <i class="ph-light ph-arrow-right" aria-hidden="true"></i>
+                </button>
+                <p class="form-status" id="form-status" role="status"></p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+      <section class="section section-ivory">
+        <div class="narrow-shell">
+          <div class="section-header">
+            <p class="kicker">자주 묻는 질문</p>
+            <h2 class="section-title">
+              상담 접수 전에 궁금한 내용을 확인하세요
+            </h2>
+            <div class="title-rule"></div>
+          </div>
+          <div class="faq-list">
+            <details>
+              <summary>상담 비용이 있나요?</summary>
+              <p>
+                상담 범위에 따라 달라질 수 있습니다. 비용이 필요한 경우 사전에
+                안내합니다.
+              </p>
+            </details>
+            <details>
+              <summary>어떤 자료를 준비해야 하나요?</summary>
+              <p>
+                자료가 없어도 기본 상담은 가능합니다. 필요한 자료는 상담 내용을
+                확인한 뒤 안내합니다.
+              </p>
+            </details>
+            <details>
+              <summary>방문 상담은 예약이 필요한가요?</summary>
+              <p>원활한 상담을 위해 사전 예약을 권장합니다.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div id="site-footer"></div>
+  </body>
+</html>
