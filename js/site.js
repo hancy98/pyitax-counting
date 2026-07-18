@@ -168,19 +168,54 @@ const form = document.querySelector("#consultation-form");
 if (form) {
   const status = document.querySelector("#form-status");
   const submit = form.querySelector("button[type='submit']");
-  form.addEventListener("submit", (event) => {
+  const defaultSubmitContent = submit.innerHTML;
+
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
+
     if (!form.checkValidity()) {
       form.reportValidity();
       status.textContent = "필수 항목과 개인정보 수집 동의를 확인해 주세요.";
       status.className = "form-status is-error";
       return;
     }
-    status.textContent =
-      "현재 페이지는 시안용입니다. 실제 접수 기능을 연결하면 작성 내용이 사무소로 전달됩니다.";
-    status.className = "form-status is-success";
+
     submit.disabled = true;
     submit.innerHTML =
-      '접수 내용을 확인했습니다 <i class="ph-light ph-check" aria-hidden="true"></i>';
+      '접수 중입니다 <i class="ph-light ph-circle-notch" aria-hidden="true"></i>';
+    status.textContent = "상담 문의를 접수하고 있습니다.";
+    status.className = "form-status";
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.status === 429) {
+        status.textContent =
+          "문의가 일시적으로 많습니다. 잠시 후 다시 시도해 주세요.";
+        status.className = "form-status is-error";
+        return;
+      }
+
+      if (!response.ok) {
+        throw new Error(`Form submission failed: ${response.status}`);
+      }
+
+      form.reset();
+      status.textContent =
+        "상담 문의가 접수되었습니다. 확인 후 연락드리겠습니다.";
+      status.className = "form-status is-success";
+    } catch (error) {
+      console.error(error);
+      status.textContent =
+        "접수 중 오류가 발생했습니다. 잠시 후 다시 시도하거나 전화로 문의해 주세요.";
+      status.className = "form-status is-error";
+    } finally {
+      submit.innerHTML = defaultSubmitContent;
+      submit.disabled = false;
+    }
   });
 }
