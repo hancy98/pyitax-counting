@@ -167,13 +167,161 @@ const form = document.querySelector("#consultation-form");
 if (form) {
   const status = document.querySelector("#form-status");
   const submit = form.querySelector("button[type='submit']");
+  const successDialog = document.querySelector("#success-dialog");
+  const dialogClose = document.querySelector("#success-dialog-close");
   const defaultSubmitContent = submit.innerHTML;
+  const validationFields = [
+    form.querySelector("#name"),
+    form.querySelector("#phone"),
+    form.querySelector("#email"),
+    form.querySelector("#business-type"),
+    form.querySelector("#consulting-area"),
+    form.querySelector("#message"),
+    form.querySelector("#contact-phone"),
+    form.querySelector("[name='privacy_consent']"),
+  ].filter(Boolean);
+
+  const validationMessages = {
+    name: "이름 또는 업체명을 입력해 주세요.",
+    phone: "연락처를 입력해 주세요.",
+    "business-type": "사업자 유형을 선택해 주세요.",
+    "consulting-area": "상담 분야를 선택해 주세요.",
+    message: "문의 내용을 입력해 주세요.",
+    "contact-phone": "상담 희망 방식을 선택해 주세요.",
+    privacy_consent: "개인정보 수집 및 이용에 동의해 주세요.",
+  };
+
+  const errorIdFor = (field) =>
+    `${field.id || field.name.replace(/[^a-z0-9_-]/gi, "-")}-error`;
+
+  const isBlank = (field) =>
+    field.required &&
+    typeof field.value === "string" &&
+    field.value.trim() === "" &&
+    !["radio", "checkbox"].includes(field.type);
+
+  const getValidationMessage = (field) => {
+    if (field.validity.typeMismatch && field.type === "email") {
+      return "이메일 주소 형식을 확인해 주세요.";
+    }
+
+    return (
+      validationMessages[field.id] ||
+      validationMessages[field.name] ||
+      "입력 내용을 확인해 주세요."
+    );
+  };
+
+  const setValidationState = (field, isValid) => {
+    const isRadio = field.type === "radio";
+    const isCheckbox = field.type === "checkbox";
+    const container = isRadio
+      ? field.closest(".choice-group")
+      : isCheckbox
+        ? field.closest(".consent")
+        : field.closest(".field");
+    const groupedFields = isRadio
+      ? [...form.querySelectorAll(`[name="${field.name}"]`)]
+      : [field];
+    const errorId = errorIdFor(field);
+    let error = document.querySelector(`#${errorId}`);
+
+    groupedFields.forEach((groupedField) => {
+      groupedField.classList.toggle("is-invalid", !isValid);
+      if (isValid) {
+        groupedField.removeAttribute("aria-invalid");
+        groupedField.removeAttribute("aria-describedby");
+      } else {
+        groupedField.setAttribute("aria-invalid", "true");
+        groupedField.setAttribute("aria-describedby", errorId);
+      }
+    });
+    container?.classList.toggle("is-invalid", !isValid);
+
+    if (isValid) {
+      error?.remove();
+      return;
+    }
+
+    if (!error) {
+      error = document.createElement("p");
+      error.id = errorId;
+      error.className = isCheckbox ? "field-error field-full" : "field-error";
+      if (isCheckbox) {
+        container?.insertAdjacentElement("afterend", error);
+      } else {
+        container?.append(error);
+      }
+    }
+    error.textContent = getValidationMessage(field);
+  };
+
+  const validateField = (field) => {
+    field.setCustomValidity("");
+    if (isBlank(field)) {
+      field.setCustomValidity("required");
+    }
+    const isValid = field.checkValidity();
+    setValidationState(field, isValid);
+    return isValid;
+  };
+
+  const validateForm = () => {
+    const invalidFields = validationFields.filter(
+      (field) => !validateField(field),
+    );
+    invalidFields[0]?.focus();
+    return invalidFields.length === 0;
+  };
+
+  const clearValidation = () => {
+    validationFields.forEach((field) => {
+      field.setCustomValidity("");
+      setValidationState(field, true);
+    });
+  };
+
+  const showSuccessDialog = () => {
+    if (typeof successDialog?.showModal === "function") {
+      successDialog.showModal();
+      return;
+    }
+    window.alert("상담 신청이 접수되었습니다. 확인 후 연락드리겠습니다.");
+  };
+
+  form
+    .querySelectorAll("input:not([type='hidden']), select, textarea")
+    .forEach((field) => {
+      const validationTarget =
+        field.type === "radio" ? form.querySelector("#contact-phone") : field;
+      const eventName = ["radio", "checkbox"].includes(field.type)
+        ? "change"
+        : field.tagName === "SELECT"
+          ? "change"
+          : "input";
+      field.addEventListener(eventName, () => {
+        if (validationTarget.getAttribute("aria-invalid") === "true") {
+          validateField(validationTarget);
+        }
+      });
+      field.addEventListener("blur", () => {
+        if (validationTarget.value || validationTarget.required) {
+          validateField(validationTarget);
+        }
+      });
+    });
+
+  dialogClose?.addEventListener("click", () => successDialog.close());
+  successDialog?.addEventListener("click", (event) => {
+    if (event.target === successDialog) {
+      successDialog.close();
+    }
+  });
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    if (!form.checkValidity()) {
-      form.reportValidity();
+    if (!validateForm()) {
       status.textContent = "필수 항목과 개인정보 수집 동의를 확인해 주세요.";
       status.className = "form-status is-error";
       return;
@@ -204,9 +352,11 @@ if (form) {
       }
 
       form.reset();
+      clearValidation();
       status.textContent =
         "상담 문의가 접수되었습니다. 확인 후 연락드리겠습니다.";
       status.className = "form-status is-success";
+      showSuccessDialog();
     } catch (error) {
       console.error(error);
       status.textContent =

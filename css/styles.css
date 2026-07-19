@@ -1692,6 +1692,31 @@ a {
   outline: none;
 }
 
+.field input.is-invalid,
+.field select.is-invalid,
+.field textarea.is-invalid {
+  border-color: var(--error);
+  background: rgba(163, 59, 50, 0.025);
+  box-shadow: 0 0 0 3px rgba(163, 59, 50, 0.08);
+}
+
+.field-error {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: var(--error);
+  font-size: 0.84rem;
+  font-weight: 620;
+  line-height: 1.45;
+}
+
+.field-error::before {
+  flex: 0 0 auto;
+  font-size: 0.95rem;
+  content: "!";
+}
+
 .choice-group {
   display: grid;
   margin: 0;
@@ -1739,6 +1764,10 @@ a {
   outline-offset: 3px;
 }
 
+.choice-group.is-invalid .choice label {
+  border-color: rgba(163, 59, 50, 0.72);
+}
+
 .consent {
   display: flex;
   align-items: flex-start;
@@ -1752,6 +1781,10 @@ a {
   height: 18px;
   margin-top: 4px;
   accent-color: var(--navy-900);
+}
+
+.consent.is-invalid {
+  color: var(--error);
 }
 
 .contact-form .button {
@@ -1777,6 +1810,64 @@ a {
 
 .form-status.is-success {
   color: var(--success);
+}
+
+.success-dialog {
+  width: min(460px, calc(100% - 32px));
+  max-width: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--charcoal);
+}
+
+.success-dialog::backdrop {
+  background: rgba(7, 24, 46, 0.68);
+  backdrop-filter: blur(3px);
+}
+
+.success-dialog-card {
+  position: relative;
+  overflow: hidden;
+  border-top: 4px solid var(--gold-600);
+  background: var(--white);
+  box-shadow: 0 24px 70px rgba(7, 24, 46, 0.24);
+  padding: clamp(32px, 6vw, 48px);
+  text-align: center;
+}
+
+.success-dialog-icon {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px;
+  place-items: center;
+  border: 1px solid rgba(44, 104, 79, 0.34);
+  border-radius: 50%;
+  background: rgba(44, 104, 79, 0.08);
+  color: var(--success);
+  font-size: 1.8rem;
+}
+
+.success-dialog .kicker {
+  margin-bottom: 9px;
+}
+
+.success-dialog h2 {
+  margin: 0;
+  color: var(--navy-950);
+  font-size: clamp(1.55rem, 5vw, 2rem);
+  letter-spacing: -0.035em;
+  line-height: 1.4;
+}
+
+.success-dialog-card > p:not(.kicker) {
+  margin: 14px 0 28px;
+  color: var(--gray-700);
+}
+
+.success-dialog .button {
+  width: 100%;
 }
 
 .site-footer {
