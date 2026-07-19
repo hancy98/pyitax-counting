@@ -44,6 +44,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
+  padding-top: 76px;
   background: var(--paper);
   color: var(--charcoal);
   font-family:
@@ -275,8 +276,10 @@ a {
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  right: 0;
+  left: 0;
   z-index: var(--z-header);
   border-bottom: 1px solid rgba(7, 24, 46, 0.1);
   background: rgba(253, 252, 249, 0.96);
@@ -2486,6 +2489,7 @@ a {
   }
 
   body {
+    padding-top: 0;
     background: #fff;
     color: #111;
   }
