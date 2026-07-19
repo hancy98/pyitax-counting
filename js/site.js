@@ -1,9 +1,9 @@
 const pages = [
-  ["about", "about.html", "사무소 소개"],
-  ["services", "services.html", "주요 서비스"],
-  ["strengths", "strengths.html", "강점"],
-  ["process", "process.html", "상담 절차"],
-  ["location", "location.html", "오시는 길"],
+  ["about", "/about/", "사무소 소개"],
+  ["services", "/services/", "주요 서비스"],
+  ["strengths", "/strengths/", "강점"],
+  ["process", "/process/", "상담 절차"],
+  ["location", "/location/", "오시는 길"],
 ];
 
 const sectionMenus = {
@@ -80,14 +80,14 @@ const mobileNav = () =>
 document.querySelector("#site-header").innerHTML = `
   <header class="site-header">
     <div class="header-inner shell">
-      <a class="wordmark" href="index.html" aria-label="박영인 세무회계사무소 홈">
+      <a class="wordmark" href="/" aria-label="박영인 세무회계사무소 홈">
         <span>박영인</span>
         <span>세무회계사무소</span>
       </a>
       <nav class="desktop-nav" aria-label="주요 메뉴">
         ${desktopNav()}
       </nav>
-      <a class="button button-outline header-cta${current === "contact" ? " is-active" : ""}" href="contact.html">
+      <a class="button button-outline header-cta${current === "contact" ? " is-active" : ""}" href="/contact/">
         상담 문의
         <i class="ph-light ph-arrow-up-right" aria-hidden="true"></i>
       </a>
@@ -102,7 +102,7 @@ document.querySelector("#site-header").innerHTML = `
     <nav class="mobile-menu" id="mobile-menu" aria-label="모바일 메뉴" hidden>
       <div class="shell">
         ${mobileNav()}
-        <a class="mobile-contact" href="contact.html">
+        <a class="mobile-contact" href="/contact/">
           상담 문의
           <i class="ph-light ph-arrow-up-right" aria-hidden="true"></i>
         </a>
@@ -125,7 +125,7 @@ document.querySelector("#site-footer").innerHTML = `
   <footer class="site-footer">
     <div class="shell footer-grid">
       <div class="footer-brand">
-        <a class="wordmark wordmark-light" href="index.html">
+        <a class="wordmark wordmark-light" href="/">
           <span>박영인</span>
           <span>세무회계사무소</span>
         </a>
@@ -154,7 +154,7 @@ document.querySelector("#site-footer").innerHTML = `
       <div class="footer-links">
         <p>메뉴</p>
         ${pages.map(([, href, label]) => `<a href="${href}">${label}</a>`).join("")}
-        <a href="contact.html">상담 문의</a>
+        <a href="/contact/">상담 문의</a>
       </div>
     </div>
     <div class="shell footer-bottom">

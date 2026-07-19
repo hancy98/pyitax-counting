@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://pyitax.co.kr/</loc>
+    <loc>https://www.pyitax.co.kr/</loc>
     <lastmod>2026-07-19</lastmod>
   </url>
   <url>
-    <loc>https://pyitax.co.kr/about</loc>
+    <loc>https://www.pyitax.co.kr/about/</loc>
     <lastmod>2026-07-19</lastmod>
   </url>
   <url>
-    <loc>https://pyitax.co.kr/services</loc>
+    <loc>https://www.pyitax.co.kr/services/</loc>
     <lastmod>2026-07-19</lastmod>
   </url>
   <url>
-    <loc>https://pyitax.co.kr/strengths</loc>
+    <loc>https://www.pyitax.co.kr/strengths/</loc>
     <lastmod>2026-07-19</lastmod>
   </url>
   <url>
-    <loc>https://pyitax.co.kr/process</loc>
+    <loc>https://www.pyitax.co.kr/process/</loc>
     <lastmod>2026-07-19</lastmod>
   </url>
   <url>
-    <loc>https://pyitax.co.kr/location</loc>
+    <loc>https://www.pyitax.co.kr/location/</loc>
     <lastmod>2026-07-19</lastmod>
   </url>
   <url>
-    <loc>https://pyitax.co.kr/contact</loc>
+    <loc>https://www.pyitax.co.kr/contact/</loc>
     <lastmod>2026-07-19</lastmod>
   </url>
 </urlset>

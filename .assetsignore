@@ -2,6 +2,10 @@
 *
 
 !/*.html
+!/**/*.html
+!/_redirects
+!/robots.txt
+!/sitemap.xml
 
 !/assets/
 !/assets/**
