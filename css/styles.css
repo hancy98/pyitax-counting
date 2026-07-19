@@ -1053,30 +1053,8 @@ a {
 }
 
 .profile-panel {
-  display: grid;
-  grid-template-columns: 0.75fr 1.25fr;
   border: 1px solid var(--gray-200);
   background: var(--white);
-}
-
-.profile-visual {
-  display: flex;
-  min-height: 420px;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(32px, 4vw, 52px);
-  background: var(--navy-950);
-  color: var(--white);
-}
-
-.profile-visual i {
-  color: var(--gold-500);
-  font-size: 4.5rem;
-}
-
-.profile-visual p {
-  margin: 0;
-  color: rgba(255, 254, 251, 0.66);
 }
 
 .profile-content {
@@ -1099,6 +1077,10 @@ a {
   gap: 24px;
   padding: 17px 0;
   border-bottom: 1px solid var(--gray-200);
+}
+
+.profile-list div:last-child {
+  border-bottom: 0;
 }
 
 .profile-list dt {
@@ -1397,48 +1379,6 @@ a {
   max-width: 700px;
   margin: 0;
   color: var(--gray-700);
-}
-
-.method-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.method-card {
-  min-height: 210px;
-  border: 1px solid var(--gray-200);
-  background: var(--white);
-  padding: clamp(26px, 3vw, 38px);
-}
-
-.method-card:first-child {
-  background: var(--navy-950);
-  color: var(--white);
-}
-
-.method-card i {
-  color: var(--gold-600);
-  font-size: 2.2rem;
-}
-
-.method-card h3 {
-  margin: 34px 0 10px;
-  color: var(--navy-950);
-  font-size: 1.5rem;
-}
-
-.method-card:first-child h3 {
-  color: var(--white);
-}
-
-.method-card p {
-  margin: 0;
-  color: var(--gray-700);
-}
-
-.method-card:first-child p {
-  color: rgba(255, 254, 251, 0.7);
 }
 
 .faq-list {
@@ -1918,7 +1858,6 @@ a {
   .editorial-split.reverse,
   .service-layout,
   .location-preview,
-  .profile-panel,
   .comparison,
   .check-panel,
   .contact-layout {
@@ -1931,10 +1870,6 @@ a {
 
   .editorial-media {
     min-height: 340px;
-  }
-
-  .profile-visual {
-    min-height: 300px;
   }
 
   .service-layout .section-header,
@@ -2073,8 +2008,7 @@ a {
 
   .strength-mosaic,
   .value-grid,
-  .audience-grid,
-  .method-grid {
+  .audience-grid {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-areas: none;
@@ -2150,9 +2084,7 @@ a {
   .value-card,
   .value-card:first-child,
   .audience-card,
-  .audience-card:first-child,
-  .method-card,
-  .method-card:first-child {
+  .audience-card:first-child {
     grid-column: auto;
     grid-row: auto;
     min-height: 0;
@@ -2160,24 +2092,13 @@ a {
   }
 
   .value-card:first-child h3,
-  .audience-card:first-child h3,
-  .method-card:first-child h3 {
+  .audience-card:first-child h3 {
     margin-top: 28px;
   }
 
   .value-card h3,
-  .audience-card h3,
-  .method-card h3 {
+  .audience-card h3 {
     margin-top: 28px;
-  }
-
-  .profile-visual {
-    min-height: 240px;
-    padding: 28px 24px;
-  }
-
-  .profile-visual i {
-    font-size: 3.4rem;
   }
 
   .profile-content,
@@ -2301,7 +2222,6 @@ a {
   }
 
   .profile-content,
-  .profile-visual,
   .location-info,
   .contact-form,
   .strength-card,
@@ -2311,7 +2231,6 @@ a {
   .strength-card:nth-child(4),
   .value-card,
   .audience-card,
-  .method-card,
   .service-card,
   .promise-item {
     padding-inline: 20px;

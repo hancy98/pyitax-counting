@@ -32,7 +32,6 @@ const sectionMenus = {
   location: [
     ["office-info", "사무소 기본 정보"],
     ["office-map", "지도 안내"],
-    ["transportation", "교통편 안내"],
   ],
 };
 
