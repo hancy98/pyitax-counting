@@ -169,6 +169,9 @@ if (form) {
   const submit = form.querySelector("button[type='submit']");
   const successDialog = document.querySelector("#success-dialog");
   const dialogClose = document.querySelector("#success-dialog-close");
+  const isSafePreview =
+    ["localhost", "127.0.0.1"].includes(window.location.hostname) ||
+    window.location.hostname.endsWith(".app.github.dev");
   const defaultSubmitContent = submit.innerHTML;
   const validationFields = [
     form.querySelector("#name"),
@@ -289,6 +292,16 @@ if (form) {
     window.alert("상담 신청이 접수되었습니다. 확인 후 연락드리겠습니다.");
   };
 
+  if (isSafePreview) {
+    const previewNote = document.createElement("p");
+    previewNote.className = "form-preview-note";
+    previewNote.innerHTML =
+      '<i class="ph-light ph-eye" aria-hidden="true"></i><span>미리보기 모드입니다. 입력한 내용은 실제로 전송되지 않습니다.</span>';
+    form.querySelector("h2")?.insertAdjacentElement("afterend", previewNote);
+    document.querySelector("#success-dialog-description").textContent =
+      "완료 화면 미리보기입니다. 실제 상담 내용은 전송되지 않았습니다.";
+  }
+
   form
     .querySelectorAll("input:not([type='hidden']), select, textarea")
     .forEach((field) => {
@@ -324,6 +337,16 @@ if (form) {
     if (!validateForm()) {
       status.textContent = "필수 항목과 개인정보 수집 동의를 확인해 주세요.";
       status.className = "form-status is-error";
+      return;
+    }
+
+    if (isSafePreview) {
+      form.reset();
+      clearValidation();
+      status.textContent =
+        "미리보기 모드: 실제 전송 없이 완료 화면을 표시했습니다.";
+      status.className = "form-status is-success";
+      showSuccessDialog();
       return;
     }
 

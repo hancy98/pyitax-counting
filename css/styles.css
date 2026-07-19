@@ -1145,9 +1145,8 @@ a {
 }
 
 .career-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 28px;
+  column-count: 2;
+  column-gap: 28px;
   margin: 0;
   padding: clamp(28px, 3.5vw, 42px) 0 0;
   color: var(--gray-700);
@@ -1156,6 +1155,7 @@ a {
 
 .career-list li {
   position: relative;
+  break-inside: avoid;
   padding: 14px 8px 14px 24px;
   border-top: 1px solid var(--gray-200);
   line-height: 1.55;
@@ -1170,10 +1170,6 @@ a {
   background: var(--gold-600);
   content: "";
   transform: rotate(45deg);
-}
-
-.career-list li:nth-child(7) {
-  grid-column: 1 / -1;
 }
 
 .promise-grid {
@@ -1631,6 +1627,25 @@ a {
   margin: 0 0 34px;
   color: var(--navy-950);
   font-size: clamp(1.65rem, 3vw, 2.3rem);
+}
+
+.form-preview-note {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: -16px 0 28px;
+  border: 1px solid rgba(184, 134, 52, 0.34);
+  background: var(--ivory-50);
+  color: var(--navy-900);
+  padding: 11px 13px;
+  font-size: 0.86rem;
+  font-weight: 650;
+}
+
+.form-preview-note i {
+  flex: 0 0 auto;
+  color: var(--gold-700);
+  font-size: 1.1rem;
 }
 
 .form-grid {
@@ -2319,12 +2334,8 @@ a {
   }
 
   .career-list {
-    grid-template-columns: 1fr;
+    column-count: 1;
     padding-top: 26px;
-  }
-
-  .career-list li:nth-child(7) {
-    grid-column: auto;
   }
 
   .promise-grid {
