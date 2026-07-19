@@ -8,7 +8,7 @@ const pages = [
 
 const sectionMenus = {
   about: [
-    ["expert", "전문가 소개"],
+    ["career", "전문가 소개"],
     ["greeting", "인사말"],
     ["philosophy", "운영 철학"],
     ["promise", "고객과의 약속"],
